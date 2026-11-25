@@ -4,21 +4,32 @@ import TableOfContents from './components/TableOfContents'
 import ProjectPage from './components/ProjectPage'
 import projects from './data/projects'
 import collaborations from './data/collaborations'
+import buildIndex from './data/buildIndex'
+import SkillsPage from './components/SkillsPage'
 
 function App() {  
   const [page, setPage] = useState(0)
+  const projectStart = 2
+  const collaborationStart = projectStart + projects.length
+  const skillsStart = collaborationStart + collaborations.length
+  const indexed = buildIndex([
+    ...projects.map((p, i) => ({ stack: p.stack, page: projectStart + i })),
+    ...collaborations.map((c, i) => ({ stack: c.stack, page: collaborationStart + i })),
+  ])
   const chapters = [
-    { title: "Projects", page: 2 },
-    { title: "Collaborations", page: 2 + projects.length },
-    { title: "Skills", page: null },
+    { title: "Projects", page: projectStart },
+    { title: "Collaborations", page: collaborationStart },
+    { title: "Skills", page: skillsStart },
     { title: "Resume", page: null },
   ]
+  
 
   const pages = [
     <Cover />,
     <TableOfContents chapters={chapters} onNavigate={setPage} />, 
     ...projects.map((p) => <ProjectPage key={p.id} project={p} chapter="Chapter I" />),
     ...collaborations.map((c) => <ProjectPage key={c.id} project={c} chapter="Chapter II" />),
+    <SkillsPage groups={indexed} />
   ]
 
 
