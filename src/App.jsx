@@ -6,6 +6,7 @@ import projects from './data/projects'
 import collaborations from './data/collaborations'
 import buildIndex from './data/buildIndex'
 import SkillsPage from './components/SkillsPage'
+import ResumePage from './components/ResumePage'
 
 function App() {  
   const [page, setPage] = useState(0)
@@ -16,11 +17,12 @@ function App() {
     ...projects.map((p, i) => ({ stack: p.stack, page: projectStart + i })),
     ...collaborations.map((c, i) => ({ stack: c.stack, page: collaborationStart + i })),
   ])
+  const resumeStart = skillsStart + 1
   const chapters = [
     { title: "Projects", page: projectStart },
     { title: "Collaborations", page: collaborationStart },
     { title: "Skills", page: skillsStart },
-    { title: "Resume", page: null },
+    { title: "Resume", page: resumeStart },
   ]
   
 
@@ -29,7 +31,8 @@ function App() {
     <TableOfContents chapters={chapters} onNavigate={setPage} />, 
     ...projects.map((p) => <ProjectPage key={p.id} project={p} chapter="Chapter I" />),
     ...collaborations.map((c) => <ProjectPage key={c.id} project={c} chapter="Chapter II" />),
-    <SkillsPage groups={indexed} />
+    <SkillsPage groups={indexed} />,
+    <ResumePage />
   ]
 
 

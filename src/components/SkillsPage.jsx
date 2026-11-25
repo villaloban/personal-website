@@ -3,8 +3,8 @@ import Page from './Page'
 function SkillsPage({ groups }) {
   return (
     <Page>
-      <p className="text-xs leading-tight uppercase tracking-widest text-zinc-500">Chapter III</p>
-      <h2 className="text-xs leading-tight font-bold mb-2">Index</h2>
+      <p className="text-sm uppercase tracking-widest text-zinc-500">Chapter III</p>
+      <h2 className="text-2xl font-bold mb-6">Index</h2>
 
       <div className="columns-2 gap-8 text-sm">
         {groups.map((group) => (
