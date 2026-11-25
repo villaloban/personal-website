@@ -4,7 +4,7 @@ function Cover() {
     return (
         <Page>
             <Hero name="Anthony Villalobos" pet="panda" />   
-            <p>GitHub · LinkedIn · Email</p>                  
+            <p className= "mt-auto text-center">GitHub · LinkedIn · Email</p>
         </Page>
     )
 }
