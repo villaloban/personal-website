@@ -3,12 +3,13 @@ import Cover from './components/Cover'
 import TableOfContents from './components/TableOfContents'
 import ProjectPage from './components/ProjectPage'
 import projects from './data/projects'
+import collaborations from './data/collaborations'
 
 function App() {  
   const [page, setPage] = useState(0)
   const chapters = [
     { title: "Projects", page: 2 },
-    { title: "Collaborations", page: null },
+    { title: "Collaborations", page: 2 + projects.length },
     { title: "Skills", page: null },
     { title: "Resume", page: null },
   ]
@@ -16,7 +17,8 @@ function App() {
   const pages = [
     <Cover />,
     <TableOfContents chapters={chapters} onNavigate={setPage} />, 
-    ...projects.map((p) => <ProjectPage key={p.id} project={p} />),
+    ...projects.map((p) => <ProjectPage key={p.id} project={p} chapter="Chapter I" />),
+    ...collaborations.map((c) => <ProjectPage key={c.id} project={c} chapter="Chapter II" />),
   ]
 
 
